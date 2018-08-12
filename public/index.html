@@ -2,8 +2,9 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
+    <title>Webscraping with Cheerio, Mongoose, & MongoDB</title>
     <style>
+      
       body { background-color: #F2F6D0 }
       #wrapper {
         width: 960px;
@@ -34,12 +35,34 @@
         height: 200px;
         font-size: 18px;
       }
+
+#loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(192, 192, 192, 0.5);
+    background-image: url("http://i.stack.imgur.com/MnyxU.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <h1>Reddit Bitcoin News Web Scraper</h1>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    
+      
+      <button type="button" class="btn btn-primary" id="btn-scrape">Scrape Latest News</button>
+      <button type="button" class="btn btn-primary" id="btn-clear">Clear Scraped News</button>
+      <!-- Shows a loading icon while user waits for web scrape to complete -->
+      <div id="loading"></div>
+      <h2><i>Here are the top articles from: https://www.reddit.com/r/Bitcoin/</i></h2>
       <div id="articles"></div>
       <div id="notes"></div>
     </div>

@@ -27,19 +27,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/week18Populater");
+mongoose.connect("mongodb://localhost/scrapednews");
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping the website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  axios.get("http://www.echojs.com/").then(function(response) {
+  axios.get("https://www.reddit.com/r/Bitcoin/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $("div span").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
@@ -81,6 +81,61 @@ app.get("/articles", function(req, res) {
       res.json(err);
     });
 });
+
+
+
+
+
+//////////////////////////////////////////////
+
+
+
+
+
+// Delete One from the database
+app.get("/delete/:id", function(req, res) {
+  // Remove a note using the objectID
+  db.Article.remove(
+    {
+      _id: mongojs.ObjectID(req.params.id)
+    },
+    function(error, removed) {
+      // Log any errors from mongojs
+      if (error) {
+        console.log(error);
+        res.send(error);
+      }
+      else {
+        // Otherwise, send the mongojs response to the browser
+        // This will fire off the success function of the ajax request
+        console.log(removed);
+        res.send(removed);
+      }
+    }
+  );
+});
+
+// Clear all from the database
+app.get("/clearall", function(req, res) {
+  // Remove every note from the notes collection
+  db.Article.remove({}, function(error, response) {
+    // Log any errors to the console
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      // Otherwise, send the mongojs response to the browser
+      // This will fire off the success function of the ajax request
+      console.log(response);
+      res.send(response);
+    }
+  });
+});
+
+
+
+///////////////////////////////////////////////
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {

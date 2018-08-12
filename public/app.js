@@ -70,3 +70,68 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+
+
+
+
+
+
+/*///////////////////////////////
+
+SCRAPE AND CLEAR BUTTON FUNCTIONALITY
+
+//////////////////////////////*/
+
+// Scrape button functionality
+$(document).ready(function () {
+
+  function scrapeWait(event) {
+    $("#loading").show();
+  }
+
+  //when clicking scrape button
+  $(document).on("click", "#btn-scrape", scrapeWait);
+  //when clicking scrape button
+  $(document).on("click", "#btn-scrape", scrapeButton);
+  
+  //Function to run the route to the scrapper
+  function scrapeButton(event) {
+
+    // Ajax call to scrape webpage
+    $.ajax({
+      method: "GET",
+      url: "/scrape",
+    })
+
+    // Wait for AJAX call then hide wait symbol
+   /*  .then(function() {
+      $("#loading").hide();
+    }) */
+
+    // Wait for ajax call then refresh page to display results
+    .then(function() {
+      location.reload();
+    })
+  }
+});
+
+// Clear button functionality
+$(document).ready(function () {
+  
+  //when clicking scrape button
+  $(document).on("click", "#btn-clear", clearButton);
+
+  //Function to run the route to the scrapper
+  function clearButton(event) {
+
+    $.ajax({
+      method: "GET",
+      url: "/clearall",
+    })
+    // Wait for ajax call then refresh page to display results
+    .then(function(reloadPage) {
+      window.location.reload();
+    })
+  }
+});
