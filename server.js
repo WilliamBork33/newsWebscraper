@@ -47,6 +47,15 @@ Routes
 ///////////////////*/
 
 // A GET route for scraping the website
+app.get("/", function(req, res) {
+
+    // If we were able to successfully scrape and save an Article, send a message to the client
+    res.send("index");
+  });
+});
+
+
+// A GET route for scraping the website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("https://www.reddit.com/r/Bitcoin/").then(function(response) {
