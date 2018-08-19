@@ -38,6 +38,7 @@ After installing node.js run `npm init`. When that's finished, install and save 
 
 - Click things, read stuff, and make notes!
 
+<br>
 
 Created by: William Bork
 GitHub: https://github.com/WilliamBork33
