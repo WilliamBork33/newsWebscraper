@@ -1,6 +1,6 @@
 ### newsWebscraper ###
 
-### NOTE: IN THIS GITHUB REPOSITORY...
+###
 
 ### The "master" branch has "index.html" file inside the "public" folder. The same path structure needed to run live in Heroku at: https://safe-everglades-49361.herokuapp.com/
 
@@ -12,9 +12,10 @@
 
 A webscraper that runs built on JavaScript using MongoDB and Mongoose for database functions.
 
-Must have the following to run: node.js and MongoDB, and a local server running to run the application.
+Must have the following to run: node.js, MongoDB, and a local server running on your computer.
 
-After installing node.js, run `npm init`. When that's finished, install and save these npm packages:
+After installing node.js run `npm init`. When that's finished, install and save these npm packages:
+
 
 1. express
 
@@ -28,9 +29,12 @@ After installing node.js, run `npm init`. When that's finished, install and save
 
 6. request
 
-Then start up MongoDB in terminal.
 
-If it runs, have fun!
+- Start up local server.
+
+- Start up MongoDB.
+
+- Click things, read stuff, and make notes!
 
 
 Created by: William Bork
